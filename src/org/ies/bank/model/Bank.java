@@ -60,6 +60,15 @@ public class Bank {
         return null;
     }
 
+    public Account findAccountN(String nif) {
+        for (var account: accounts) {
+            if (account.getCustomer().getNif().equals(nif)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
     public void deposit(String iban, Double amount) {
         var account = findAccount(iban);
 
@@ -70,20 +79,51 @@ public class Bank {
         }
     }
 
-    public int
-
     public void subBalance(String iban, Double amount) {
-        for (var account: accounts) {
-            if (account.getIban().equals(iban)) {
-                if (account.getBalance() >= amount) {
-                    account.setBalance(account.getBalance() - amount);
-                } else {
-                    System.out.println("No hay suficiente dinero");
-                }
+        var account = findAccount(iban);
+        if (account != null) {
+            if (account.getBalance() >= amount) {
+                account.setBalance(account.getBalance() - amount);
             } else {
-                System.out.println("No existe la cuenta");
+                System.out.println("No hay suficiente dinero");
+            }
+        } else {
+            System.out.println("No existe la cuenta");
+        }
+    }
+
+
+
+//    public int numAccounts1(String nif) {
+//        var quantity = 0;
+//        for (var account: accounts) {
+//            if (account.getCustomer().getNif().equals(nif)) {
+//                quantity++;
+//            }
+//        } return quantity;
+//    }
+
+    public int numAccounts(String nif) {
+        var quantity = 0;
+
+        for (var account : accounts) {
+            findAccountN(nif);
+            if (account != null) {
+                quantity++;
+            } else {
+                System.out.println("No existen cuentas asociadas a este nif");
             }
         }
+        return quantity;
+    }
+
+    public Customer accountData(String iban) {
+        var account = findAccount(iban);
+
+        if (account != null) {
+            return account.getCustomer();
+        }
+        return null;
     }
 
 

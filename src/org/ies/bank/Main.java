@@ -15,6 +15,6 @@ public class Main {
         var bankReader = new BankReader(scanner, accountReader);
         var bankApp = new BankApp(scanner, bankReader);
 
-        System.out.println(bankApp);
+        bankApp.run();
     }
 }

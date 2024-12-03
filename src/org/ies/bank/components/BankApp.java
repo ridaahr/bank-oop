@@ -1,5 +1,4 @@
 package org.ies.bank.components;
-import org.ies.bank.model.Bank;
 
 import java.util.Scanner;
 
@@ -26,21 +25,35 @@ public class BankApp {
             scanner.nextLine();
 
             if (option == 1) {
-                
+                bank.showAccounts();
             }
-            if (option == 2) {
-
+            else if (option == 2) {
+                System.out.println("Introduce el iban: ");
+                var iban = scanner.nextLine();
+                bank.showAccount(iban);
             }
-            if (option == 3) {
-
+            else if (option == 3) {
+                System.out.println("Introduce el nif: ");
+                var nif = scanner.nextLine();
+                bank.customerAccounts(nif);
             }
-            if (option == 4) {
-
+            else if (option == 4) {
+                System.out.println("Introduce el iban: ");
+                var iban = scanner.nextLine();
+                System.out.println("Introduce la cantidad: ");
+                var amount = scanner.nextDouble();
+                scanner.nextLine();
+                bank.deposit(iban, amount);
             }
-            if (option == 5) {
-
+            else if (option == 5) {
+                System.out.println("Introduce el iban: ");
+                var iban = scanner.nextLine();
+                System.out.println("Introduce la cantidad: ");
+                var amount = scanner.nextDouble();
+                scanner.nextLine();
+                bank.subBalance(iban, amount);
             }
-            if (option == 6) {
+            else if (option == 6) {
                 System.out.println("Saliendo...Adiós");
             }
             else {

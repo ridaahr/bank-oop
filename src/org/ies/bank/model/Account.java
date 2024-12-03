@@ -42,7 +42,7 @@ public class Account {
     }
     
     public void showInfo() {
-        System.out.println("IBAN: " + iban + ". Saldo " + balance + ".NIF Cliente " + balance);
+        System.out.println("IBAN: " + iban + ". Saldo " + balance + ".NIF Cliente " + customer.getNif());
     }
 
     @Override
