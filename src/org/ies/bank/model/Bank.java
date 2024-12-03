@@ -51,21 +51,32 @@ public class Bank {
         }
     }
 
-    public void addBalance(String iban, Double quantity) {
+    public Account findAccount(String iban) {
         for (var account: accounts) {
             if (account.getIban().equals(iban)) {
-                account.setBalance(account.getBalance() + quantity);
-            } else {
-                System.out.println("No existe la cuenta");
+                return account;
             }
+        }
+        return null;
+    }
+
+    public void deposit(String iban, Double amount) {
+        var account = findAccount(iban);
+
+        if (account != null) {
+            account.deposit(amount);
+        } else {
+            System.out.println("No existe la cuenta");
         }
     }
 
-    public void subBalance(String iban, Double quantity) {
+    public int
+
+    public void subBalance(String iban, Double amount) {
         for (var account: accounts) {
             if (account.getIban().equals(iban)) {
-                if (account.getBalance() >= quantity) {
-                    account.setBalance(account.getBalance() - quantity);
+                if (account.getBalance() >= amount) {
+                    account.setBalance(account.getBalance() - amount);
                 } else {
                     System.out.println("No hay suficiente dinero");
                 }

@@ -36,6 +36,10 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
     
     public void showInfo() {
         System.out.println("IBAN: " + iban + ". Saldo " + balance + ".NIF Cliente " + balance);
