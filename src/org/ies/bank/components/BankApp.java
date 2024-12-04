@@ -44,6 +44,7 @@ public class BankApp {
                 var amount = scanner.nextDouble();
                 scanner.nextLine();
                 bank.deposit(iban, amount);
+                bank.showAccount(iban);
             }
             else if (option == 5) {
                 System.out.println("Introduce el iban: ");
@@ -52,6 +53,7 @@ public class BankApp {
                 var amount = scanner.nextDouble();
                 scanner.nextLine();
                 bank.subBalance(iban, amount);
+                bank.showAccount(iban);
             }
             else if (option == 6) {
                 System.out.println("Saliendo...Adiós");
