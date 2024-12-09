@@ -38,7 +38,7 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        balance += amount;
+        this.balance += amount;
     }
     
     public void showInfo() {

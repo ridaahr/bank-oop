@@ -92,6 +92,18 @@ public class Bank {
         }
     }
 
+    public int countCustomerAccounts(String nif) {
+        int count = 0;
+        for (var account : accounts) {
+            if (account.getCustomer().getNif().equals(nif)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+
 
 
 //    public int numAccounts1(String nif) {
@@ -124,6 +136,25 @@ public class Bank {
             return account.getCustomer();
         }
         return null;
+    }
+
+    public void transferMoney(String ibanOrigin, String ibanDestination, double amount) {
+        var account1 = findAccount(ibanOrigin);
+        var account2 = findAccount(ibanDestination);
+
+        if (account1 == null && account2 == null) {
+            System.out.println("No existe ninguna de las cuentas");
+        } else if (account1 == account2) {
+            System.out.println("Has introducido cuentas iguales");
+        } else if (account1 == null) {
+            System.out.println("No existe la cuenta origen");
+        } else if (account2 == null) {
+            System.out.println("No existe la cuenta destino");
+        }
+        if (account1 != null && account2 != null) {
+            subBalance(ibanOrigin,amount);
+            deposit(ibanDestination, amount);
+        }
     }
 
 
