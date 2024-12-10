@@ -40,7 +40,11 @@ public class Account {
     public void deposit(double amount) {
         this.balance += amount;
     }
-    
+
+    public void customerInfo() {
+        System.out.println("NIF: " + customer.getNif() + " Nombre: " + customer.getName() + " Apellidos: " + customer.getSurname());
+    }
+
     public void showInfo() {
         System.out.println("IBAN: " + iban + ". Saldo " + balance + ".NIF Cliente " + customer.getNif());
     }

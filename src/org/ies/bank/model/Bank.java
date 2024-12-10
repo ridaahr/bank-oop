@@ -2,7 +2,6 @@ package org.ies.bank.model;
 
 import java.util.Arrays;
 import java.util.Objects;
-import org.ies.bank.model.Account;
 
 public class Bank {
     private String name;
@@ -51,6 +50,14 @@ public class Bank {
         }
     }
 
+    public void customerAccountsIban(String iban) {
+        for (var account: accounts) {
+            if (account.getIban().equals(iban)) {
+                account.showInfo();
+            }
+        }
+    }
+
     public Account findAccount(String iban) {
         for (var account: accounts) {
             if (account.getIban().equals(iban)) {
@@ -63,7 +70,7 @@ public class Bank {
     public Account findAccountN(String nif) {
         for (var account: accounts) {
             if (account.getCustomer().getNif().equals(nif)) {
-                return account;
+                account.customerInfo();
             }
         }
         return null;
@@ -138,19 +145,24 @@ public class Bank {
         return null;
     }
 
+    public void checkAccounts(String ibanOrigin, String ibanDestination) {
+        if (ibanOrigin == null && ibanDestination == null) {
+            System.out.println("No existe ninguna de las cuentas");
+        } else if (ibanOrigin == ibanDestination) {
+            System.out.println("Has introducido cuentas iguales");
+        } else if (ibanOrigin == null) {
+            System.out.println("No existe la cuenta origen");
+        } else if (ibanDestination == null) {
+            System.out.println("No existe la cuenta destino");
+        }
+    }
+
     public void transferMoney(String ibanOrigin, String ibanDestination, double amount) {
         var account1 = findAccount(ibanOrigin);
         var account2 = findAccount(ibanDestination);
 
-        if (account1 == null && account2 == null) {
-            System.out.println("No existe ninguna de las cuentas");
-        } else if (account1 == account2) {
-            System.out.println("Has introducido cuentas iguales");
-        } else if (account1 == null) {
-            System.out.println("No existe la cuenta origen");
-        } else if (account2 == null) {
-            System.out.println("No existe la cuenta destino");
-        }
+        checkAccounts(ibanOrigin, ibanDestination);
+
         if (account1 != null && account2 != null) {
             subBalance(ibanOrigin,amount);
             deposit(ibanDestination, amount);
